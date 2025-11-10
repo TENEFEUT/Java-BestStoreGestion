@@ -9,7 +9,7 @@
   <body>
     <div class="container">
 		<h1 class="text-center my-4">Nos Produits </h1>
-		<a class="btn btn-primary" href="/produits/create">Crée Produit</a>
+		<a class="btn btn-primary" href="/produits/create">Ajouter Produit</a>
 		
 		<table class="table">
 			<thead>
@@ -25,19 +25,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="produit: ${Produits}">
+				<tr th:each="produit : ${produits}">
 					<td th:text="${produit.id}"></td>
 					<td th:text="${produit.nom}"></td>
 					<td th:text="${produit.marque}"></td>
 					<td th:text="${produit.categorie}"></td>
-					<td th:text="${produit.prix}"></td>
+					<td th:text="${{produit.prix} + '€'}"></td>
 					<td>
-						<img th:src="@{'/' + ${produit.nomFichierImage}}" alt="..." width="100">
+						<img th:src="@{'/images/' + ${produit.nomFichierImage}}" alt="..." width="100">
 					</td>
-					<td th:text="${produit.createAt.toString().substring(0, 10)}"></td>
+					<td th:text="${produit.createdAt.toString().substring(0, 10)}"></td>
 					<td style="white-space:nowrap">
 						<a class="btn btn-primary btn-sm" th:href="@{/produits/modifier(id=${produit.id})}">Modifier</a>
-						<a class="btn btn-danger btn-sm" th:href="@{/produits/suprimer(id=${produit.id})}" onclick="return confirm('Voulez-vous vraiment supprimer?')">Supprimer</a>
+						<a class="btn btn-danger btn-sm" th:href="@{/produits/supprimer(id=${produit.id})}" onclick="return confirm('Voulez-vous vraiment supprimer?')">Supprimer</a>
 					</td>
 				</tr>
 			</tbody>
